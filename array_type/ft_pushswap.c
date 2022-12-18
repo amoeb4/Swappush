@@ -6,7 +6,7 @@
 /*   By: dafranco <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:02:46 by dafranco          #+#    #+#             */
-/*   Updated: 2022/12/03 06:39:05 by dafranco         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:11:30 by dafranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -75,11 +75,9 @@ int	main(int argc, char **argv)
 {
 	int				*pile_a;
 	int				*pile_b;
-	int				i;
 	size_t			size_b;
 	size_t			size;
 
-	i = 0;
 	if (ft_valid(argc, argv) > 0)
 		return (1);
 	if (ft_issorted(argc, argv) == 0)
@@ -88,38 +86,17 @@ int	main(int argc, char **argv)
 	pile_a = ft_init_a(size, argv, &pile_a);
 	pile_b = ft_init_b(size, argv, &pile_b);
 	ft_indexing(size, &pile_a);
-	if (argc == 3)
-		ft_sort(size, &pile_a);
-	if (argc == 4)
-		ft_self_sort(size, &pile_a);
-	i = 0;
 	size_b = argc - size - 1;
-	size = ft_step_one(argc, size, &pile_a, &pile_b);
+	size = ft_call(argc, size, &pile_a, &pile_b);
 	size_b = argc - size - 1;
-	size = ft_step_two(argc, size, &pile_a, &pile_b);
-	size_b = argc - size - 1;
-	size = ft_step_thre(argc, size, &pile_a, &pile_b);
-	size_b = argc - size - 1;
-	size = intel_tri(argc, size, &pile_a, &pile_b);
-	size_b = argc - size - 1;
-	size = last_tri(argc, size, &pile_a, &pile_b);
-//	size = ft_push_a(argc, size, &pile_a, &pile_b);
-//	size = ft_push_a(argc, size, &pile_a, &pile_b);
-//	size = ft_push_b(argc, size, &pile_b, &pile_a);
-//	size = ft_push_b(argc, size, &pile_b, &pile_a);
-	size_b = argc - size - 1;
-//	ft_rotate(size_b, &pile_b);
-//	ft_rotate(size_b, &pile_b);
-//	ft_rotate(size_b, &pile_b);
-//	ft_rotate(size_b, &pile_b);
-	printf("%ld", size_b);
+	int i = 0;
 	printf("_________\n| A | B |\n|---|---|\n");
 	while (i < size_b || i < size)
 	{
 		printf("| %d | %d |\n", pile_a[i], pile_b[i]);
 		i++;
 	}
-	printf("|___|___|\n argc = %d", argc);
+	printf("|___|___|\n argc = %d\n step 3", argc);
 	free(pile_a);
 	free(pile_b);
 	return (0);
